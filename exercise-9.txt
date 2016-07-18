@@ -1,0 +1,82 @@
+Exercise 9
+Create a data model representing a Barn with Chickens :hatching_chick:
+This model should provide answers to the following questions:
+How many rooster, hen and chicks existed in the Barn on a specific date
+How many chicks will come to age on a specific date
+
+id, type of chicken, number of chickens for each chicken type
+Date
+
+
+mysql> create database hatching_chick;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| information_schema    |
+| c9                    |
+| decodemtl_addressbook |
+| hatching_chick        |
+| mysql                 |
+| performance_schema    |
+| phpmyadmin            |
++-----------------------+
+7 rows in set (0.00 sec)
+
+
+mysql> use hatching_chick
+Database changed
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table Chickens(
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    -> type enum("hen", "rooster"),
+    -> birthdate datetime
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++--------------------------+
+| Tables_in_hatching_chick |
++--------------------------+
+| Chickens                 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe Chickens;
++-----------+-----------------------+------+-----+---------+----------------+
+| Field     | Type                  | Null | Key | Default | Extra          |
++-----------+-----------------------+------+-----+---------+----------------+
+| id        | int(11)               | NO   | PRI | NULL    | auto_increment |
+| type      | enum('hen','rooster') | YES  |     | NULL    |                |
+| birthdate | datetime              | YES  |     | NULL    |                |
++-----------+-----------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> create table Barn(
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    -> numberOfChickens INT
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++--------------------------+
+| Tables_in_hatching_chick |
++--------------------------+
+| Barn                     |
+| Chickens                 |
++--------------------------+
+2 rows in set (0.00 sec)
+
+mysql> describe Barn;
++------------------+---------+------+-----+---------+----------------+
+| Field            | Type    | Null | Key | Default | Extra          |
++------------------+---------+------+-----+---------+----------------+
+| id               | int(11) | NO   | PRI | NULL    | auto_increment |
+| numberOfChickens | int(11) | YES  |     | NULL    |                |
++------------------+---------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
